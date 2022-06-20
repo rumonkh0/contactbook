@@ -19,7 +19,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
   }
 
   try {
-    const decode = jwt.verify(token, "rumon");
+    const decode = jwt.verify(token, 'rumon');
 
     req.user = await User.findById(decode.id);
     next();
@@ -27,7 +27,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
   } catch (err) {
     return res.status(401).json({
       success: false,
-      msg: "token not valid",
+      msg: "token not valid from protect",
     });
   }
 });
