@@ -8,7 +8,7 @@ connectDB();
 const auth = require('./routes/auth');
 
 //Body parser
-app.use(express.json({ extended: false }));
+app.use(express.json());
 
 //Mount routers
 app.use('/api/v1/auth', auth);

@@ -26,13 +26,14 @@ exports.login = asyncHandler(async (req, res, next) =>{
     }
 
     //check for user
-    const user = await User.findOne({email});
+    const user = await (await User.findOne({email}).select('+password'));
 
     if(!user){
         return res.status(400).json({
             error: 'User not found' 
         })
     }
+   
 
     const isMatch = await user.matchPassword(password);
 
