@@ -22,7 +22,9 @@ exports.login = asyncHandler(async (req, res, next) =>{
     const {email, password} = req.body;
 
     if(!email || !password){
-        return next(err);
+        return res.status(400).json({
+            error: 'Please enter email and password' 
+        });
     }
 
     //check for user
@@ -31,7 +33,7 @@ exports.login = asyncHandler(async (req, res, next) =>{
     if(!user){
         return res.status(400).json({
             error: 'User not found' 
-        })
+        });
     }
    
 
@@ -46,6 +48,23 @@ exports.login = asyncHandler(async (req, res, next) =>{
     sendTokenResponse(user, res);
 
 })
+
+//@desc   Logout user
+//@Route  GET api/v1/auth/logout
+//@acess  public
+exports.logout = asyncHandler(async(req, res, next) =>{
+    res.cookie('token', 'none', {
+        expires: new Date(Date.now() + 2*1000),
+        httponly: true
+    });
+
+    res.status(200).json({
+        success: true,
+        data: {}
+    });
+});
+
+
 
 const sendTokenResponse = (user, res) => {
     //create token
