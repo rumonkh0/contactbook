@@ -28,7 +28,7 @@ exports.login = asyncHandler(async (req, res, next) =>{
     }
 
     //check for user
-    const user = await (await User.findOne({email}).select('+password'));
+    const user = await User.findOne({email}).select('+password');
 
     if(!user){
         return res.status(400).json({
@@ -64,6 +64,41 @@ exports.logout = asyncHandler(async(req, res, next) =>{
     });
 });
 
+
+
+
+
+//@desc   update user details
+//@route  PUT api/v1/auth/updatedetails
+//@access private
+exports.updateDetails = asyncHandler(async(req, res)=>{
+    const user = await User.findByIdAndUpdate(req.user.id, req.body);
+    res.status(200).json({
+        success: true,
+        data: user,
+      });
+})
+
+//@desc    update password
+//@route   api/v1/auth/updatepassword
+//@access  private
+exports.updatePassword = asyncHandler(async(req, res) =>{
+    const user = await (await User.findById(req.user.id)).isSelected('+password');
+
+    if(!await User.matchPassword(req.password)){
+        return res.status(400).json({
+            success: false,
+            msg: 'invalid credential'
+        })
+    }
+
+user.password = req.body.newpassword;
+
+await user.save();
+
+sendTokenResponse(user, res);
+
+});
 
 
 const sendTokenResponse = (user, res) => {

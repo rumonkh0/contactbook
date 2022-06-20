@@ -50,3 +50,6 @@ exports.deteleContact = asyncHandler(async(req, res) =>{
         msg: 'contact deleted'
     })
 })
+
+//@desc   update contact
+//@route  PUT api/v1/
