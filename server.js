@@ -5,13 +5,13 @@ const app = express();
 connectDB();
 
 //Routes files
-const users = require('./routes/users');
+const auth = require('./routes/auth');
 
 //Body parser
 app.use(express.json({ extended: false }));
 
 //Mount routers
-app.use('/api/v1/user', users);
+app.use('/api/v1/auth', auth);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
