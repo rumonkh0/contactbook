@@ -1,6 +1,11 @@
 const express = require("express");
+const path = require('path');
 const connectDB = require("./config/db");
 const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
+
+// Load env vars
+dotenv.config({ path: './config/config.env' });
 
 const app = express();
 connectDB();
@@ -24,7 +29,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-const port = 3000;
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });

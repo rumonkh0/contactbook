@@ -83,7 +83,7 @@ exports.updateDetails = asyncHandler(async(req, res)=>{
 //@route   api/v1/auth/updatepassword
 //@access  private
 exports.updatePassword = asyncHandler(async(req, res) =>{
-    const user = await (await User.findById(req.user.id)).isSelected('+password');
+    const user = await User.findById(req.user.id).isSelected('+password');
 
     if(!await User.matchPassword(req.password)){
         return res.status(400).json({
@@ -106,7 +106,7 @@ const sendTokenResponse = (user, res) => {
     const token = user.getSignedJwtToken();
 
     const options = {
-        expires: new Date(Date.now() + 10*24*60*60*1000),
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE*24*60*60*1000),
         httponly: true
     }
 

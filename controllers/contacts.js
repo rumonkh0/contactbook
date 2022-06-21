@@ -42,7 +42,7 @@ exports.deteleContact = asyncHandler(async(req, res) =>{
         return res.status(404).json({
             success: false,
             msg: 'Not authorized'
-        })
+        });
     }
 
     await Contact.findByIdAndDelete(req.params.id);
@@ -52,4 +52,24 @@ exports.deteleContact = asyncHandler(async(req, res) =>{
 })
 
 //@desc   update contact
-//@route  PUT api/v1/
+//@route  PUT api/v1/contact/:id
+//@access private
+exports.updateContact = asyncHandler(async(req,res) =>{
+    let contact = await Contact.findById(req.params.id);
+    if (!contact) return res.status(404).json({ msg: 'Contact not found' });
+
+    if(contact.user.toString() !== req.user.id){
+        return res.status(404).json({
+            success: false,
+            msg: 'Not authorized'
+        });
+    }
+
+    contact = await Contact.findByIdAndUpdate(req.params.id, req.body);
+
+    res.status(200).json({
+        success: true,
+        data: contact,
+      });
+
+})
