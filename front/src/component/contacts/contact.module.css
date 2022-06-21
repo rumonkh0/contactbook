@@ -1,0 +1,77 @@
+.label {
+  display: flex;
+}
+
+.radio {
+  width: 15px;
+}
+
+label {
+  padding-right: 20px;
+}
+
+input {
+  margin-bottom: 20px;
+}
+
+.button {
+  color: white;
+  background: rgba(80, 164, 253, 0.51);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.4px);
+  -webkit-backdrop-filter: blur(11.4px);
+  border: 1px solid rgba(80, 164, 253, .4);
+}
+
+.main {
+  width: 100%;
+  height: 120px;
+  padding: 0 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.4px);
+  -webkit-backdrop-filter: blur(11.4px);
+  border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 4px 0 15px 0;
+}
+
+.first {
+  flex-grow: 1;
+}
+
+.first p {
+  text-align: center;
+  margin-top: 2px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background-color: blue;
+}
+
+.second button {
+  padding: 3px 10px;
+  margin: 0 2px;
+  background-color: green;
+  border: none;
+  border-radius: 10px;
+}
+
+button:nth-child(2) {
+  background-color: red;
+}

@@ -1,10 +1,10 @@
 import React from "react";
-import "./login.css";
+import style from "./login.module.css";
 
 function about() {
   return (
-    <div className="body">
-      <div className="about">
+    <div className={style.body}>
+      <div className={style.about}>
         <h1>Website for keeping your contact numbers</h1>
         <p>Made by RUMON KHAN</p>
       </div>

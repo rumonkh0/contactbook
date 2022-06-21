@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import './login.css'
+import style from './login.module.css'
 
 function register() {
   return (
-    <div className='body'>
-        <div className="login">
+    <div className={style.body}>
+        <div className={style.login}>
         <h1>Sign Up</h1>
         <form method="post">
         <input
@@ -26,7 +26,7 @@ function register() {
             placeholder="Password"
             required="required"
           />
-          <button type="submit" className="btn btn-primary btn-block btn-large">
+          <button type="submit" className={`${style.btn} ${style.btnPrimary} ${style.btnBlock} ${style.btnLarge}` }>
             Sign Up
           </button>
           <p>Already signed up? <Link to="/login"> <span 
