@@ -20,6 +20,9 @@ function Login() {
     e.preventDefault();
     login(formData);
   };
+  if (state.loading) {
+    return <div>loading</div>;
+  }
 
   if (state.isAuthenticated) {
     return <Navigate to="/" />;

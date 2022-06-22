@@ -16,11 +16,13 @@ const AuthState = (props) => {
   const initialState = {
     isAuthenticated: false,
     user: null,
-    loading: true,
+    loading: false,
     error: null,
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
+  
+  // const setLoading = () => dispatch({ type: SET_LOADING });
 
   //register user
   const register = async (formdata) => {

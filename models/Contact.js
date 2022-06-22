@@ -7,13 +7,19 @@ const ContactSchema = mongoose.Schema({
   },
   name: {
     type: String,
-    require: [true, "Please enter a name"],
+    required: [true, "Please enter a name"],
   },
   phone: {
     type: String,
-    require: [true, "Please enter a phone number"],
+    required: [true, "Please enter a phone number"],
   },
-  email: String,
+  email: {
+    type: String,
+    match: [
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      "Please add a valid email",
+    ],
+  },
   type: {
     type: String,
     enum: ["personal", "professional"],

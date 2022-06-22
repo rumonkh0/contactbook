@@ -222,6 +222,16 @@ input:focus {
     0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 a{
     text-decoration: none;
 }

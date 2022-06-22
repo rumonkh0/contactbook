@@ -1,4 +1,5 @@
 import {
+  SET_LOADING,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
@@ -10,6 +11,11 @@ import {
 
 const authReducer = (state, action) => {
   switch (action.type) {
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       case USER_LOADED:

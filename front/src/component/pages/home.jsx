@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
 import ContactForm from "../contacts/ContactForm";
-import ContactFilter from "../contacts/contactFilter";
+import ContactFilter from "../contacts/ContactFilter";
 import Contacts from "../contacts/Contacts";
 
 function Home() {
@@ -42,6 +42,9 @@ function Home() {
     MsOverflowStyle: "none" /* IE and Edge */,
     scrollbarWidth: "none",
   };
+  if (state.loading) {
+    return <div>loading</div>;
+  }
 
   if (!state.isAuthenticated) {
     return <Navigate to="/login" />;

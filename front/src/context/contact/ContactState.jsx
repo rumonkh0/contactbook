@@ -2,14 +2,13 @@ import React, { useReducer } from "react";
 import contactContext from "./contactContex";
 import contactReducer from "./contactReducer";
 import {
+  SET_LOADING,
   GET_CONTACTS,
   ADD_CONTACT,
   DELETE_CONTACT,
   SET_CURRENT,
   CLEAR_CURRENT,
-  UPDATE_CONTACT,
   FILTER_CONTACTS,
-  CLEAR_CONTACTS,
   CLEAR_FILTER,
   CONTACT_ERROR,
 } from "../Types";
@@ -17,15 +16,20 @@ import axios from "axios";
 
 const ContactState = (props) => {
   const initialState = {
-      contacts:[],
-      loading: false
+    contacts: [],
+    loading: false,
+    current: null,
+    filtered: null,
   };
+
+  const setLoading = () => dispatch({ type: SET_LOADING });
 
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
   //get contacts
   const getContact = async () => {
     try {
+      setLoading();
       const res = await axios.get("/api/v1/contacts");
       console.log(res.data.contacts);
       dispatch({
@@ -70,9 +74,45 @@ const ContactState = (props) => {
     }
   };
 
+  //edit contact
+  const editContact = (contact) => {
+    dispatch({ type: SET_CURRENT, payload: contact });
+  };
+
+  //update contact
+  const updateContact = async (id, formdata) => {
+    try {
+      await axios.put(`api/v1/contact/${id}`, formdata);
+      getContact();
+      dispatch({ type: CLEAR_CURRENT });
+    } catch (err) {
+      dispatch({
+        type: CONTACT_ERROR,
+        payload: err.response.msg,
+      });
+    }
+  };
+  //
+  const filterContact = (text) => {
+    dispatch({ type: FILTER_CONTACTS, payload: text });
+  };
+
+  //clear filter
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  };
   return (
     <contactContext.Provider
-      value={{ state, getContact, addContact, deleteContact }}
+      value={{
+        state,
+        getContact,
+        addContact,
+        deleteContact,
+        editContact,
+        updateContact,
+        filterContact,
+        clearFilter,
+      }}
     >
       {props.children}
     </contactContext.Provider>

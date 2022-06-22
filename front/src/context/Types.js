@@ -1,5 +1,6 @@
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const SET_LOADING = 'SET_LOADING';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const USER_LOADED = 'USER_LOADED';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -15,3 +16,5 @@ export const FILTER_CONTACTS = 'FILTER_CONTACTS';
 export const CLEAR_CONTACTS = 'CLEAR_CONTACTS';
 export const CLEAR_FILTER = 'CLEAR_FILTER';
 export const CONTACT_ERROR = 'CONTACT_ERROR';
+export const SET_MSG ='SET_MSG'
+export const REMOVE_ALERT ='REMOVE_ALERT'

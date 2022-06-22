@@ -1,11 +1,28 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ContactContext from "../../context/contact/contactContex";
 import styles from "./contact.module.css";
 import style from "../pages/login.module.css";
 
 function ContactForm() {
-  const { state, addContact } = useContext(ContactContext);
-  const [formData, setFormData] = useState({});
+  const { state, addContact, updateContact } = useContext(ContactContext);
+  const { current, contacts } = state;
+
+  const initialData = {
+    email: "",
+    name: "",
+    phone: "",
+    type: "personal",
+  };
+  const [formData, setFormData] = useState(initialData);
+  useEffect(() => {
+    if (current !== null) {
+      setFormData(current);
+    } else {
+      setFormData(initialData);
+    }
+  }, [current, contacts]);
+
+  const { email, name, phone, type } = formData;
 
   const onChange = (e) => {
     setFormData({
@@ -16,27 +33,35 @@ function ContactForm() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addContact(formData);
+    {
+      current === null
+        ? addContact(formData)
+        : updateContact(current._id, formData);
+    }
+    setFormData(initialData);
   };
 
   return (
     <form action="" onSubmit={onSubmit}>
-      <h1>Edit contact</h1>
+      <h1>{current === null ? "Add contact" : "Edit contact"}</h1>
       <input
         type="text"
         name="name"
+        value={name}
         placeholder="Enter contact name"
         onChange={onChange}
       />
       <input
         type="email"
         name="email"
+        value={email}
         placeholder="Enter email address"
         onChange={onChange}
       />
       <input
-        type="text"
+        type="number"
         name="phone"
+        value={phone}
         placeholder="Enter phone number"
         onChange={onChange}
       />
@@ -48,6 +73,7 @@ function ContactForm() {
             type="radio"
             name="type"
             value="personal"
+            checked={type === "personal"}
             onChange={onChange}
           />{" "}
           Personal
@@ -58,6 +84,7 @@ function ContactForm() {
             type="radio"
             name="type"
             value="professional"
+            checked={type === "professional"}
             onChange={onChange}
           />
           Professional
@@ -66,10 +93,17 @@ function ContactForm() {
       <button
         type="submit"
         // className={styles.button}
-        className={`${style.btn} ${styles.button} ${style.btnBlock} ${style.btnLarge}`}
+        className={`${styles.btn} ${styles.button} ${style.btnBlock} ${style.btnLarge}`}
       >
-        Add contact
+        {current === null ? "Add contact" : "Update contact"}
       </button>
+
+      {current && <button
+        className={`${style.btn} ${styles.button} ${style.btnBlock} ${style.btnLarge} ${styles.clear}`}
+      >
+        Clear form
+      </button>}
+      
     </form>
   );
 }

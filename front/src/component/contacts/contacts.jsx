@@ -7,11 +7,14 @@ function Contacts() {
   useEffect(() => {
     getContact();
   }, []);
-  const { contacts } = state;
+  const { contacts, filtered } = state;
 
   return (
     <div>
-      {contacts.map((contact) => (
+      {(filtered === null)? 
+      contacts.map((contact) => (
+        <ContactItem key={contact._id} contact={contact} />
+      )):filtered.map((contact) => (
         <ContactItem key={contact._id} contact={contact} />
       ))}
     </div>

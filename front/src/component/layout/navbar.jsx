@@ -41,10 +41,10 @@ function Navbar() {
               <p>About</p>
             </Link>
           </li>
-          <li>
-            <Link onClick={onClick} to="/login">
-              <p>Logout</p>
-            </Link>
+          <li onClick={onClick} >
+      
+              <p style={{cursor: 'pointer'}}>Logout</p>
+            
           </li>
               </>
           }
