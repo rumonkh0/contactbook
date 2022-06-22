@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
-import ContactForm from "../contacts/contactForm";
+import ContactForm from "../contacts/ContactForm";
 import ContactFilter from "../contacts/contactFilter";
-import Contacts from "../contacts/contacts";
+import Contacts from "../contacts/Contacts";
 
 function Home() {
   const { loadUser, state } = useContext(AuthContext);
