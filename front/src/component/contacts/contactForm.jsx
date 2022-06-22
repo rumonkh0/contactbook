@@ -12,11 +12,11 @@ function contactForm() {
       <p style={{ color: "black", margin: "0 0 7px 0" }}>Type</p>
       <div className={styles.label}>
         <label>
-          <input className={styles.radio} type="radio" value="personal" />{" "}
+          <input className={styles.radio} type="radio" name="type" value="personal" />{" "}
           Personal
         </label>
         <label>
-          <input className={styles.radio} type="radio" value="professional" />
+          <input className={styles.radio} type="radio" name="type" value="professional" />
           Professional
         </label>
       </div>

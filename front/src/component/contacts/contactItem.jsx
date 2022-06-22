@@ -10,7 +10,7 @@ function contactItem() {
         <h1 style={{ margin: "5px" }}>01716814563</h1>
       </div>
       <div className={style.edit}>
-        <div className={style.first}><p>Personal</p></div>
+        <div className={style.first}><p style={{backgroundColor:'red'}}>Personal</p></div>
         <div className={style.second}>
           <button>Edit</button>
           <button>Delete</button>

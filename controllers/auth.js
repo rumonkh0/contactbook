@@ -49,6 +49,19 @@ exports.login = asyncHandler(async (req, res, next) =>{
 
 })
 
+
+//@desc   get me
+//@route  GET api/v1/auth/me
+//@access privet
+exports.getMe = asyncHandler(async(req, res) => {
+    const user = await User.findById(req.user.id);
+
+    res.status(200).json({
+        success: true,
+        data: user
+    });
+});
+
 //@desc   Logout user
 //@Route  GET api/v1/auth/logout
 //@acess  public
