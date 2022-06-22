@@ -1,19 +1,18 @@
-import React from "react"; 
-import {useReducer}  from "react";
+import axios from "axios";
+import React, { useReducer } from "react";
+import {
+  AUTH_ERROR,
+  LOGIN_FAIL,
+  LOGIN_SUCCESS,
+  LOGOUT,
+  REGISTER_FAIL,
+  REGISTER_SUCCESS,
+  USER_LOADED,
+} from "../Types";
 import authContext from "./authContext";
 import authReducer from "./authReducer";
-import axios from "axios";
-import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  USER_LOADED,
-  AUTH_ERROR,
-  LOGIN_SUCCESS, 
-  LOGIN_FAIL,
-  LOGOUT,
-} from "../Types";
 
-const authState = (props) => {
+const AuthState = (props) => {
   const initialState = {
     isAuthenticated: false,
     user: null,
@@ -26,6 +25,7 @@ const authState = (props) => {
   //register user
   const register = async (formdata) => {
     try {
+        console.log('register going');
       const res = await axios.post("/api/v1/auth/register", formdata);
 
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
@@ -37,7 +37,7 @@ const authState = (props) => {
   //login user
   const login = async (formdata) => {
     try {
-      const res = await axios.post("/api/v1/auth/login");
+      const res = await axios.post('/api/v1/auth/login', formdata);
 
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     } catch (error) {
@@ -70,4 +70,4 @@ const authState = (props) => {
   );
 };
 
-export default authState;
+export default AuthState;

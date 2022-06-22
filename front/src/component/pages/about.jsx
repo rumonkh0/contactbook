@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./login.module.css";
 
-function about() {
+function About() {
   return (
     <div className={style.body}>
       <div className={style.about}>
@@ -12,4 +12,4 @@ function about() {
   );
 }
 
-export default about;
+export default About;

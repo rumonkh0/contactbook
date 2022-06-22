@@ -1,11 +1,11 @@
-import Navbar from "./component/layout/navbar";
+import Navbar from "./component/layout/Navbar";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import Home from "./component/pages/home";
-import Login from "./component/pages/login";
-import Register from "./component/pages/register";
-import About from "./component/pages/about";
-import AuthState from "./context/auth/authState";
+import Home from "./component/pages/Home";
+import Login from "./component/pages/Login";
+import Register from "./component/pages/Register";
+import About from "./component/pages/About";
+import AuthState from "./context/auth/AuthState";
 
 function App() {
   return (

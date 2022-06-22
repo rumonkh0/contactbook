@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import AuthContext from "../../context/auth/authContext";
 import ContactForm from "../contacts/contactForm";
 import ContactFilter from "../contacts/contactFilter";
 import Contacts from "../contacts/contacts";
 
-function home() {
+function Home() {
+  const { loadUser, state } = useContext(AuthContext);
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
   const style = {
     display: "flex",
     backgroundColor: "#8EC5FC",
@@ -26,14 +34,18 @@ function home() {
     padding: "60px",
     display: "flex",
     justifyContent: "start",
-    flexDirection: 'column',
+    flexDirection: "column",
     flexBasis: "150px",
     flexGrow: "1",
     paddingBottom: "80px",
-    overflowY: 'auto',
-    MsOverflowStyle: 'none',  /* IE and Edge */
-    scrollbarWidth: 'none'
+    overflowY: "auto",
+    MsOverflowStyle: "none" /* IE and Edge */,
+    scrollbarWidth: "none",
   };
+
+  if (!state.isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
   return (
     <div style={style}>
       <div style={form}>
@@ -47,4 +59,4 @@ function home() {
   );
 }
 
-export default home;
+export default Home;

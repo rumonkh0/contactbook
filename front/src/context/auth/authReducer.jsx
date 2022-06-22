@@ -12,6 +12,7 @@ const authReducer = (state, action) => {
   switch (action.type) {
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
+      case USER_LOADED:
       return {
         ...state,
         isAuthenticated: true,
@@ -29,12 +30,7 @@ const authReducer = (state, action) => {
         loading: false,
         error: action.payload
       };
-    case USER_LOADED:
-      return {
-        ...state,
-        user: action.payload,
-        loading: false,
-      };
+     
     default:
       throw new Error(`Unsupported type of: ${action.type}`);
   }
