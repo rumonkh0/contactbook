@@ -19,7 +19,7 @@ function AlertState(props) {
   };
 
   return (
-    <alertContext.Provider value={{ state }}>{props.children}</alertContext.Provider>
+    <alertContext.Provider value={{ state, setAlert }}>{props.children}</alertContext.Provider>
   );
 }
 

@@ -1,13 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
+import AlertContext from "../../context/alert/alertContext";
 import { Link } from "react-router-dom";
 import style from "./login.module.css";
 
 function Login() {
-  const { login, state } = useContext(AuthContext);
+  const { login, clearError, state } = useContext(AuthContext);
+  const { error } = state;
+  const { setAlert } = useContext(AlertContext);
+
+  useEffect(() => {
+    if (error) {
+      setAlert(error);
+      clearError();
+    }
+  }, [error]);
 
   const [formData, setFormData] = useState({});
+  const { email, password } = formData;
 
   const onChange = (e) => {
     setFormData({
@@ -18,7 +29,11 @@ function Login() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    login(formData);
+    if (email === "" || password === "") {
+      setAlert("Please fill in all fields");
+    } else {
+      login(formData);
+    }
   };
   if (state.loading) {
     return <div>loading</div>;

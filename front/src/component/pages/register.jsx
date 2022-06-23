@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
+import AlertContext from "../../context/alert/alertContext"
 import { Link } from "react-router-dom";
 import style from "./login.module.css";
 
 function Register() {
   const { register, state } = useContext(AuthContext);
+  const { setAlert } = useContext(AlertContext);
   const [formData, setFormData] = useState({});
+  const {name, email, password} = formData;
   const onChange = (e) => {
     setFormData({
       ...formData,
@@ -16,7 +19,12 @@ function Register() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    register(formData);
+    if (name === '' || email === '' || password === '') {
+      setAlert('Please fill in all fields');
+    } else {
+      register(formData);
+    }
+    
   };
 
   if (state.isAuthenticated) {

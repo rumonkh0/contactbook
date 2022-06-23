@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useReducer } from "react";
 import {
   AUTH_ERROR,
+  CLEAR_CONTACTS,
+  CLEAR_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGOUT,
@@ -43,7 +45,7 @@ const AuthState = (props) => {
 
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     } catch (error) {
-      dispatch({ type: LOGIN_FAIL });
+      dispatch({ type: LOGIN_FAIL , payload: error.response.data.error});
     }
   };
 
@@ -65,8 +67,11 @@ const AuthState = (props) => {
     }
   };
 
+  //clear error
+  const clearError = () => {dispatch({type: CLEAR_ERROR})};
+
   return (
-    <authContext.Provider value={{ state, register, login, logout, loadUser }}>
+    <authContext.Provider value={{ state, register, login, logout, loadUser, clearError }}>
       {props.children}
     </authContext.Provider>
   );

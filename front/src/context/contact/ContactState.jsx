@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 import contactContext from "./contactContex";
 import contactReducer from "./contactReducer";
 import {
@@ -14,6 +14,7 @@ import {
 } from "../Types";
 import axios from "axios";
 
+
 const ContactState = (props) => {
   const initialState = {
     contacts: [],
@@ -21,6 +22,9 @@ const ContactState = (props) => {
     current: null,
     filtered: null,
   };
+
+  
+  // const { setAlert } = useContext(AlertContext);
 
   const setLoading = () => dispatch({ type: SET_LOADING });
 
@@ -31,7 +35,6 @@ const ContactState = (props) => {
     try {
       setLoading();
       const res = await axios.get("/api/v1/contacts");
-      console.log(res.data.contacts);
       dispatch({
         type: GET_CONTACTS,
         payload: res.data.contacts,
@@ -48,7 +51,7 @@ const ContactState = (props) => {
   const addContact = async (formData) => {
     try {
       const res = await axios.post("/api/v1/createcontact", formData);
-
+      // setAlert("CONTACT ADDED");
       dispatch({
         type: ADD_CONTACT,
         payload: res.data.data,
@@ -65,6 +68,7 @@ const ContactState = (props) => {
   const deleteContact = async (id) => {
     try {
       await axios.delete(`/api/v1/contact/${id}`);
+      // setAlert("CONTACT DELETED");
       dispatch({ type: DELETE_CONTACT, payload: id });
     } catch (err) {
       dispatch({
@@ -76,6 +80,7 @@ const ContactState = (props) => {
 
   //edit contact
   const editContact = (contact) => {
+    // setAlert("PLEASE UPDATE YOUR CONTACT");
     dispatch({ type: SET_CURRENT, payload: contact });
   };
 
@@ -83,6 +88,7 @@ const ContactState = (props) => {
   const updateContact = async (id, formdata) => {
     try {
       await axios.put(`api/v1/contact/${id}`, formdata);
+      // setAlert("CONTACT UPDATED");
       getContact();
       dispatch({ type: CLEAR_CURRENT });
     } catch (err) {

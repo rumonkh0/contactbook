@@ -1,5 +1,6 @@
 import {
   SET_LOADING,
+  CLEAR_ERROR,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
@@ -18,12 +19,13 @@ const authReducer = (state, action) => {
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      case USER_LOADED:
+    case USER_LOADED:
       return {
         ...state,
         isAuthenticated: true,
         user: action.payload,
         loading: false,
+        error: null,
       };
     case REGISTER_FAIL:
     case LOGIN_FAIL:
@@ -34,9 +36,14 @@ const authReducer = (state, action) => {
         isAuthenticated: false,
         user: null,
         loading: false,
-        error: action.payload
+        error: action.payload,
       };
-     
+      case CLEAR_ERROR:
+        return{
+          ...state,
+          error: null
+        }
+
     default:
       throw new Error(`Unsupported type of: ${action.type}`);
   }
