@@ -9,24 +9,25 @@
 }
 
 .logo {
-  width: 200px;
+  flex-grow: 1;
+  width: 130px;
   padding: 0 0 0 30px;
 }
 
 .menu {
-  flex-grow: 1;
+  flex-basis: 300px;
+  padding-right: 10px;
   justify-content: space-evenly;
 }
 .list {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   align-items: flex-end;
   list-style-type: none;
 }
 
 .list li {
   color: white;
-  padding: 0 25px 0 25px;
 }
 
 p{

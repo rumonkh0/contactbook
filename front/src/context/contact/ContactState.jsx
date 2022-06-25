@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from "react";
+import React, { useReducer } from "react";
 import contactContext from "./contactContex";
 import contactReducer from "./contactReducer";
 import {
@@ -23,8 +23,6 @@ const ContactState = (props) => {
     filtered: null,
   };
 
-  
-  // const { setAlert } = useContext(AlertContext);
 
   const setLoading = () => dispatch({ type: SET_LOADING });
 

@@ -42,7 +42,7 @@ function ContactForm() {
   };
 
   return (
-    <form action="" onSubmit={onSubmit}>
+    <form id="form" action="" onSubmit={onSubmit}>
       <h1>{current === null ? "Add contact" : "Edit contact"}</h1>
       <input
         type="text"

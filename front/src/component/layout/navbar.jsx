@@ -4,20 +4,24 @@ import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
 
 function Navbar() {
-  const { state , logout} = useContext(AuthContext);
+  const { state, logout } = useContext(AuthContext);
 
-  const onClick =()=>{
-        logout();
-  }
+  const onClick = () => {
+    logout();
+  };
 
   return (
     <div className="nav">
       <div className="logo">Contact Book</div>
       <div className="menu">
         <ul className="list">
-          {(!state.isAuthenticated) ?
-          
+          {!state.isAuthenticated ? (
             <Fragment>
+              <li>
+                <Link to="/about">
+                  <p>About</p>
+                </Link>
+              </li>
               <li>
                 <Link to="/login">
                   <p>Sign In</p>{" "}
@@ -29,26 +33,23 @@ function Navbar() {
                 </Link>
               </li>
             </Fragment>
-          :
-              <>
+          ) : (
+            <>
               <li>
-            <Link to="/">
-              <p>Home</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="/about">
-              <p>About</p>
-            </Link>
-          </li>
-          <li onClick={onClick} >
-      
-              <p style={{cursor: 'pointer'}}>Logout</p>
-            
-          </li>
-              </>
-          }
-          
+                <Link to="/">
+                  <p>Home</p>
+                </Link>
+              </li>
+              <li>
+                <Link to="/about">
+                  <p>About</p>
+                </Link>
+              </li>
+              <li onClick={onClick}>
+                <p style={{ cursor: "pointer" }}>Logout</p>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>

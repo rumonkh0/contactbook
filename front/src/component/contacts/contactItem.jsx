@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import mark from "./contact.module.css";
+import { Link } from "react-router-dom";
 import ContactContext from "../../context/contact/contactContex";
 
 const ContactItem = ({ contact }) => {
   const { deleteContact, editContact } = useContext(ContactContext);
-  const {_id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
 
   const style = {
     backgroundColor: "red",
   };
-
 
   return (
     <div className={mark.main}>
@@ -23,8 +23,10 @@ const ContactItem = ({ contact }) => {
           <p style={type === "personal" ? style : {}}>{type}</p>
         </div>
         <div className={mark.second}>
-          <button onClick={()=>editContact(contact)}>Edit</button>
-          <button onClick={()=>deleteContact(_id)}>Delete</button>
+          <Link to='#form'>
+            <button onClick={() => editContact(contact)}>Edit</button>
+          </Link>
+          <button onClick={() => deleteContact(_id)}>Delete</button>
         </div>
       </div>
     </div>

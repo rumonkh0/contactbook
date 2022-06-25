@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useReducer } from "react";
 import {
+  SET_LOADING,
   AUTH_ERROR,
-  CLEAR_CONTACTS,
   CLEAR_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
@@ -24,7 +24,7 @@ const AuthState = (props) => {
 
   const [state, dispatch] = useReducer(authReducer, initialState);
   
-  // const setLoading = () => dispatch({ type: SET_LOADING });
+//  const setLoading = () => dispatch({ type: SET_LOADING });
 
   //register user
   const register = async (formdata) => {
@@ -58,6 +58,7 @@ const AuthState = (props) => {
 
   //load user
   const loadUser = async () => {
+    // setLoading();
     try {
       const res = await axios.get("/api/v1/auth/me");
 

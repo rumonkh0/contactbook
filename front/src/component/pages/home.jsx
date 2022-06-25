@@ -10,33 +10,35 @@ function Home() {
 
   useEffect(() => {
     loadUser();
-  }, []);
+  }, [loadUser]);
 
   const style = {
     display: "flex",
     backgroundColor: "#8EC5FC",
     backgroundImage: "linear-gradient(270deg, #8EC5FC 0%, #E0C3FC 100%)",
-    height: "100vh",
+    height: `calc(100vh-60px)`,
+    flexWrap: "wrap",
   };
 
   const form = {
     padding: "20px",
-    flexBasis: "150px",
+    width: "300px",
     flexGrow: "1",
     alingSelf: "center",
     display: "flex",
-    alignItems: "center",
     justifyContent: "center",
-    paddingBottom: "80px",
+    paddingTop: "80px",
   };
 
   const contact = {
-    padding: "60px",
+    padding: "20px",
     display: "flex",
     justifyContent: "start",
     flexDirection: "column",
-    flexBasis: "150px",
+    minWidth: "300px",
+    height: "100%",
     flexGrow: "1",
+    alingSelf: "center",
     paddingBottom: "80px",
     overflowY: "auto",
     MsOverflowStyle: "none" /* IE and Edge */,
@@ -55,8 +57,10 @@ function Home() {
         <ContactForm />
       </div>
       <div style={contact}>
-        <ContactFilter />
-        <Contacts />
+        <div>
+          <ContactFilter />
+          <Contacts />
+        </div>
       </div>
     </div>
   );
