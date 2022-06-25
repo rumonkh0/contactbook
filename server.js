@@ -25,11 +25,12 @@ app.use(cookieParser());
 app.use('/api/v1/auth', auth);
 app.use('/api/v1', contact);
 
+const port = process.env.PORT || 5000;
+
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send(`Hello World!${port}`);
 });
 
-const port = process.env.PORT || 5000;
 app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
+  console.log(`App listening on port `);
 });
