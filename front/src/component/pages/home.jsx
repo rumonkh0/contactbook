@@ -10,7 +10,7 @@ function Home() {
 
   useEffect(() => {
     loadUser();
-  }, [loadUser]);
+  }, []);
 
   const style = {
     display: "flex",
