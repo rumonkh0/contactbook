@@ -16,7 +16,7 @@ function Home() {
     display: "flex",
     backgroundColor: "#8EC5FC",
     backgroundImage: "linear-gradient(270deg, #8EC5FC 0%, #E0C3FC 100%)",
-    height: `calc(100vh-60px)`,
+    height: "calc(100vh-60px)",
     flexWrap: "wrap",
   };
 
@@ -36,7 +36,7 @@ function Home() {
     justifyContent: "start",
     flexDirection: "column",
     minWidth: "300px",
-    height: "100%",
+    height: 'calc(100vh-60px)',
     flexGrow: "1",
     alingSelf: "center",
     paddingBottom: "80px",
@@ -57,7 +57,7 @@ function Home() {
         <ContactForm />
       </div>
       <div style={contact}>
-        <div>
+        <div style={{height: 'calc(100vh - 60px)'}}>
           <ContactFilter />
           <Contacts />
         </div>
